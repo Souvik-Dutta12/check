@@ -30,7 +30,11 @@
     Print the Hiro marker or display it on another screen, then point your camera at it to see the Monastery in AR
   </div>
 
-  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+  <a-scene 
+  embedded 
+  style="width: 100%; height: 100vh;"
+ arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:720; sourceType: webcam; sourceFace: environment;">
+
     
     <!-- Marker -->
     <a-marker type="pattern" url="hiro.patt">
