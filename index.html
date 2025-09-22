@@ -3,53 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AR Model Demo</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Import model-viewer library -->
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <title>Marker-based AR Demo</title>
+  <!-- A-Frame library -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <!-- AR.js library -->
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    #info {
+      position: absolute;
+      top: 10px;
+      width: 100%;
+      text-align: center;
+      color: #333;
+      font-family: sans-serif;
+      z-index: 1;
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-br from-green-100 via-white to-green-50 min-h-screen flex flex-col items-center justify-center font-sans">
+<body>
 
-  <!-- Header -->
-  <header class="text-center mb-8">
-    <h1 class="text-4xl font-extrabold text-green-700 drop-shadow-sm">
-      Explore in <span class="underline decoration-green-500">Augmented Reality</span>
-    </h1>
-    <p class="mt-2 text-gray-600 text-lg">
-      View and interact with the Manasija Resava Monastery in 3D & AR
-    </p>
-  </header>
-
-  <!-- Model Card -->
-  <div class="w-full max-w-4xl bg-white rounded-2xl shadow-2xl p-4 md:p-6">
-    <model-viewer
-      src="/manasija_resava_monastery.glb"
-      alt="3D Model"
-      ar
-      ar-modes="webxr scene-viewer quick-look"
-      environment-image="neutral"
-      auto-rotate
-      camera-controls
-      style="width: 100%; height: 500px;"
-      class="rounded-xl">
-    </model-viewer>
-
-    <!-- Footer Info -->
-    <div class="text-center mt-4">
-      <button class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-full shadow-lg transition duration-300">
-        Launch AR Mode
-      </button>
-      <p class="mt-2 text-gray-500 text-sm">
-        Works best on iOS (Quick Look) & Android (Scene Viewer)
-      </p>
-    </div>
+  <div id="info">
+    Point your camera at the marker to see the Monastery in AR
   </div>
 
-  <!-- Footer -->
-  <footer class="mt-8 text-gray-500 text-sm">
-    Built with <span class="text-green-600 font-semibold">TailwindCSS</span> + <span class="text-green-600 font-semibold">&lt;model-viewer&gt;</span>
-  </footer>
+  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    
+    <!-- Marker -->
+    <a-marker type="pattern" url="pattern.patt">
+      <!-- 3D Model -->
+      <a-entity 
+        gltf-model="manasija_resava_monastery.glb"
+        scale="0.5 0.5 0.5"
+        position="0 0 0">
+      </a-entity>
+    </a-marker>
+
+    <!-- Camera -->
+    <a-entity camera></a-entity>
+
+  </a-scene>
 
 </body>
 </html>
