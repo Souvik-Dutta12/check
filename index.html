@@ -18,23 +18,26 @@
       color: #333;
       font-family: sans-serif;
       z-index: 1;
+      background-color: rgba(255,255,255,0.7);
+      padding: 5px;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
 
   <div id="info">
-    Point your camera at the marker to see the Monastery in AR
+    Print the Hiro marker or display it on another screen, then point your camera at it to see the Monastery in AR
   </div>
 
   <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
     
     <!-- Marker -->
-    <a-marker type="pattern" url="pattern.patt">
+    <a-marker type="pattern" url="hiro.patt">
       <!-- 3D Model -->
       <a-entity 
         gltf-model="manasija_resava_monastery.glb"
-        scale="0.5 0.5 0.5"
+        scale="0.3 0.3 0.3"
         position="0 0 0">
       </a-entity>
     </a-marker>
